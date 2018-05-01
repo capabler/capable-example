@@ -1,1 +1,1 @@
-# delicate 框架的案例实现
+# DelicateJS 框架的案例实现
