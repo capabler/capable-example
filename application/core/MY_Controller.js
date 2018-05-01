@@ -2,7 +2,7 @@
  * 公共的控制器
  * 处理一些初始化的信息，比如登录信息，统一返回等
  */
-module.exports = class extends CA_Controller { 
+module.exports = class extends DJ_Controller { 
 	constructor(ctx) { 
 		super(ctx)		
 		this.isAjax = false
