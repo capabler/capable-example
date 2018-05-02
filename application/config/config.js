@@ -5,6 +5,7 @@ const reactView = require('koa-react-view');
 module.exports = {
 	// 服务端口号
 	port: 3000,
+	
 	// 数据库引擎可选, lokijs、sequelize
 	database_engine: 'lokijs',
 	
@@ -12,6 +13,8 @@ module.exports = {
 	 * 自定义公共继承的对象，默认是放在core文件夹下，文件名称已MY_开头
 	 * 控制器自动挂载MY_Controller.js文件
    * 模块自动挂载MY_Model.js文件
+	 * 那么我们在controllers中定义类时，可以继承MY_Controller
+	 * 而MY_Controller继承的是DJ_Controller，所以可以做一些通用的业务处理
 	 */
 	subclass_prefix: 'MY_',
 
@@ -43,9 +46,13 @@ module.exports = {
 	templates: {
 		react: {
 			render(app) {
+				require('babel-register')({
+					presets: [ "es2015", "react"],
+					extensions: [ '.jsx' ],
+				});
 				reactView(app, {
 					views: path.join(global.application, 'views'),
-				})
+				});
 			},	
 			ext:'jsx'
 		},
@@ -57,7 +64,7 @@ module.exports = {
 					viewExt: 'ejs',
 					cache: false,
 					debug: false
-				})
+				});
 			},
 			ext: 'ejs'
 		}
