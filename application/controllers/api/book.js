@@ -1,18 +1,27 @@
 module.exports = class extends MY_Controller {
-	async add() {
-		if (!this.isAjax) {
-			this.sendJSON()
-			return false
-		}
-		if (!!$_POST['book_name'] === false) {
-			this.sendJSON()
-			return false
-		}
+
+	async list() {
 		this.load.model('book_model')
-		await this.book_model.addBook({
-			book_name: $_POST['book_name']
-		})
-		this.sendJSON(1, 'success')
+		const list = await this.book_model.bookList()
+		this.sendJSON(1, 'success', list)		
+	}
+
+	async add() {
+		await this.method.post(async () => {
+			if (!this.isAjax) {
+				this.sendJSON()
+				return false
+			}
+			if (!!$_POST['book_name'] === false) {
+				this.sendJSON()
+				return false
+			}
+			this.load.model('book_model')
+			await this.book_model.addBook({
+				book_name: $_POST['book_name']
+			})
+			this.sendJSON(1, 'success')
+		})	
 	}
 
 	async delete() { 

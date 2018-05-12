@@ -13,6 +13,11 @@ module.exports = class extends DJ_Controller {
 			}
 		}
 		this.isLogin = $_SESSION.hasOwnProperty('user_name') && $_SESSION['user_name'] ? true : false
+
+		this.MethodNotAllowed(() => {
+			this.ctx.status = 405
+			this.ctx.body = 'Method Not Allowed'
+		})
 	}
 
 	sendJSON(status = -1, message = 'fail', data = []) {

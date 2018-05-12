@@ -22,8 +22,14 @@ module.exports = {
 	 */
 	lokijs: {
 		//注意这里面的db类似于mysql的host
-		read: {
-			db: './db.json'
+		book: {
+			db: './db/book.json'
+		},
+		user: {
+			db: './db/user.json'
+		},
+		code: {
+			db: './db/code.json'
 		}
 	}
 }
