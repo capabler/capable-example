@@ -1,6 +1,8 @@
 module.exports = class extends MY_Controller { 
 	
 	async index() {
+		await this.method('post', 'get')
+		
 		await this.method.get(async () => {
 			let data = {
 				isLogin: this.isLogin
@@ -16,6 +18,10 @@ module.exports = class extends MY_Controller {
 				this.load.template('react')
 			}
 			await this.view('index', data)
-		})	
+		})
+
+		await this.method.post(async () => { 
+			this.ctx.body = '123'
+		})
 	}		
 }
