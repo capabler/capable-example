@@ -21,11 +21,12 @@ module.exports = class extends DJ_Controller {
 	}
 
 	sendJSON(status = -1, message = 'fail', data = []) {
-		this.json(JSON.stringify({
+		this.ctx.set('Content-Type', 'text/json')	
+		this.ctx.body = JSON.stringify({
 			status,
 			message,
 			data
-		}))
+		})
 	}
 
 }

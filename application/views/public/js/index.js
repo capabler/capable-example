@@ -12,8 +12,10 @@ $('.book span').eq(1).click(function () {
 	if (value !== '') { 
 		$.post('/api/book/add', {
 			book_name:value
-		}, function () { 
-			location.reload()
+		}, function (data) { 
+			if (data.status === 1) {
+				location.reload()
+			}	
 		})
 	}
 })
